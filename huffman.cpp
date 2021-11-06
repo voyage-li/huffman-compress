@@ -2,6 +2,7 @@
 
 void select(HuffmanTree &HT, int n)
 {
+    //简单搜两遍 没有动脑子
     int s1 = 0, s2 = 0;
     for (int i = 1; i <= n; i++)
     {
@@ -24,14 +25,14 @@ void select(HuffmanTree &HT, int n)
     HT[n + 1].rchild = s2;
 }
 
-void init(HuffmanTree &HT, std::map<int, int> &map, std::map<int, char *> &HC, char *&re)
+void init(HuffmanTree &HT, std::map<int, int> &map, std::map<int, char *> &HC)
 {
+    //初始化 huffman树
     int fre = map.size();
-    fre++;
     HT = (HuffmanTree)malloc((2 * fre) * sizeof(HTNode));
     for (int i = 0; i < 2 * fre; i++)
     {
-        HT[i].key = ' ';
+        HT[i].key = 0;
         HT[i].weight = 0;
         HT[i].lchild = 0;
         HT[i].rchild = 0;
@@ -45,8 +46,10 @@ void init(HuffmanTree &HT, std::map<int, int> &map, std::map<int, char *> &HC, c
         HT[index].key = iter->first;
         HT[index].weight = iter->second;
     }
+    //构造 huffman树
     for (int i = fre + 1; i < 2 * fre; i++)
         select(HT, i - 1);
+    //构造 huffman编码
     char *cd = (char *)malloc(fre * sizeof(char));
     cd[fre - 1] = '\0';
     for (int i = 1; i <= fre; i++)
@@ -60,14 +63,16 @@ void init(HuffmanTree &HT, std::map<int, int> &map, std::map<int, char *> &HC, c
             else
                 cd[--start] = '1';
         }
-        if (i != fre)
-        {
-            HC[HT[i].key] = (char *)malloc((fre - start) * sizeof(char));
-            strcpy(HC[HT[i].key], &cd[start]);
-        }
-        else
-        {
-            re = &cd[start];
-        }
+        HC[HT[i].key] = (char *)malloc((fre - start) * sizeof(char));
+        strcpy(HC[HT[i].key], &cd[start]);
     }
+}
+
+void output_huffmantree(HuffmanTree &HT, std::map<int, int> &map)
+{
+    std::cout << "Huffman树：" << std::endl;
+    printf("       |  key   | weight | parent |  lch   | rch \n");
+    int fre = map.size();
+    for (int i = 1; i < 2 * fre; i++)
+        printf("%6d | %6d | %6d | %6d | %6d | %6d \n", i, HT[i].key, HT[i].weight, HT[i].parent, HT[i].lchild, HT[i].rchild);
 }

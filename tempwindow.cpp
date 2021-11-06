@@ -1,24 +1,10 @@
 #include "tempwindow.h"
 #include <bits/stdc++.h>
 
-void feature(int now_byte, float size)
-{
-    int temp = 40 * (now_byte / size);
-    int temp_n = 40 - temp;
-    putchar('\r');
-    putchar('[');
-    while (temp--)
-        putchar('#');
-    while (temp_n--)
-        putchar(' ');
-    std::cout << "]  " << (int)(100 * (now_byte / size)) << "%";
-}
-
 void *possesion(void *threadarg)
 {
     while (1)
     {
-
         struct poss_help *p = (struct poss_help *)threadarg;
         int now_byte = p->now_b;
         float size = p->total;

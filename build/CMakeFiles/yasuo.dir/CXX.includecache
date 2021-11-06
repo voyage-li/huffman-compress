@@ -6,27 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/voyage/code/yasuo/huffman_con/big.h
-huffman.h
-/home/voyage/code/yasuo/huffman_con/huffman.h
-tempwindow.h
-/home/voyage/code/yasuo/huffman_con/tempwindow.h
-
 /home/voyage/code/yasuo/huffman_con/huffman.h
 bits/stdc++.h
 -
 
-/home/voyage/code/yasuo/huffman_con/main.cpp
-bits/stdc++.h
--
-huffman.h
-/home/voyage/code/yasuo/huffman_con/huffman.h
+/home/voyage/code/yasuo/huffman_con/small.cpp
 small.h
 /home/voyage/code/yasuo/huffman_con/small.h
-big.h
-/home/voyage/code/yasuo/huffman_con/big.h
-tempwindow.h
-/home/voyage/code/yasuo/huffman_con/tempwindow.h
+bits/stdc++.h
+-
 
 /home/voyage/code/yasuo/huffman_con/small.h
 huffman.h
