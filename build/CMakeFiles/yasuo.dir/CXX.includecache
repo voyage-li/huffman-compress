@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/voyage/code/yasuo/big.cpp
+big.h
+/home/voyage/code/yasuo/big.h
+bits/stdc++.h
+-
+
+/home/voyage/code/yasuo/big.h
+huffman.h
+/home/voyage/code/yasuo/huffman.h
+tempwindow.h
+/home/voyage/code/yasuo/tempwindow.h
+
+/home/voyage/code/yasuo/huffman.h
+bits/stdc++.h
+-
+
+/home/voyage/code/yasuo/small.cpp
+small.h
+/home/voyage/code/yasuo/small.h
+bits/stdc++.h
+-
+
+/home/voyage/code/yasuo/small.h
+huffman.h
+/home/voyage/code/yasuo/huffman.h
+tempwindow.h
+/home/voyage/code/yasuo/tempwindow.h
+
+/home/voyage/code/yasuo/tempwindow.cpp
+tempwindow.h
+/home/voyage/code/yasuo/tempwindow.h
+bits/stdc++.h
+-
+
+/home/voyage/code/yasuo/tempwindow.h
+

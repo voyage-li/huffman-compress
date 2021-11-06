@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/voyage/code/yasuo/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9     -std=c++11  -pthread -g   -Wall -g -o CMakeFiles/yasuo.dir/main.o -c /home/voyage/code/yasuo/main.cpp",
+  "file": "/home/voyage/code/yasuo/main.cpp"
+},
+{
+  "directory": "/home/voyage/code/yasuo/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9     -std=c++11  -pthread -g   -Wall -g -o CMakeFiles/yasuo.dir/small.o -c /home/voyage/code/yasuo/small.cpp",
+  "file": "/home/voyage/code/yasuo/small.cpp"
+},
+{
+  "directory": "/home/voyage/code/yasuo/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9     -std=c++11  -pthread -g   -Wall -g -o CMakeFiles/yasuo.dir/big.o -c /home/voyage/code/yasuo/big.cpp",
+  "file": "/home/voyage/code/yasuo/big.cpp"
+},
+{
+  "directory": "/home/voyage/code/yasuo/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9     -std=c++11  -pthread -g   -Wall -g -o CMakeFiles/yasuo.dir/huffman.o -c /home/voyage/code/yasuo/huffman.cpp",
+  "file": "/home/voyage/code/yasuo/huffman.cpp"
+},
+{
+  "directory": "/home/voyage/code/yasuo/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9     -std=c++11  -pthread -g   -Wall -g -o CMakeFiles/yasuo.dir/tempwindow.o -c /home/voyage/code/yasuo/tempwindow.cpp",
+  "file": "/home/voyage/code/yasuo/tempwindow.cpp"
+}
+]

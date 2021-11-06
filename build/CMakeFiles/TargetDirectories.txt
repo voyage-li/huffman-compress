@@ -1,0 +1,3 @@
+/home/voyage/code/yasuo/build/CMakeFiles/rebuild_cache.dir
+/home/voyage/code/yasuo/build/CMakeFiles/edit_cache.dir
+/home/voyage/code/yasuo/build/CMakeFiles/yasuo.dir
