@@ -24,7 +24,7 @@ void select(HuffmanTree &HT, int n)
     HT[n + 1].rchild = s2;
 }
 
-void init(HuffmanTree &HT, std::map<char, int> &map, std::map<char, char *> &HC, char *&re)
+void init(HuffmanTree &HT, std::map<int, int> &map, std::map<int, char *> &HC, char *&re)
 {
     int fre = map.size();
     fre++;
@@ -37,7 +37,7 @@ void init(HuffmanTree &HT, std::map<char, int> &map, std::map<char, char *> &HC,
         HT[i].rchild = 0;
         HT[i].parent = 0;
     }
-    std::map<char, int>::iterator iter;
+    std::map<int, int>::iterator iter;
     int index = 1;
     HT[0].weight = INT_MAX;
     for (iter = map.begin(); iter != map.end(); iter++, index++)

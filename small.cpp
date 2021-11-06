@@ -60,12 +60,34 @@ bool small::compress_input()
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
 
     char c;
+    int every = 8 * select * 0.5; //单位 bit
+    int tt_key = 0;               //用来记录 key
+    int now_bit = 0;              //用来记录当前读入了多少个bit
+    int char_now = 0;             //用来记录当前读取的字符使用到的 bit
     while (infile.get(c))
     {
-        if (map.count(c) == 0)
-            map[c] = 1;
-        else
-            map[c]++;
+        char_now = 0;
+        while (1)
+        {
+            while (char_now < 8)
+            {
+                tt_key += ((int)c) & (1 << (7 - char_now));
+                char_now++;
+                now_bit++;
+                if (now_bit == every)
+                    break;
+            }
+            if (now_bit == every)
+            {
+                if (map.count(tt_key) == 0)
+                    map[tt_key] = 1;
+                else
+                    map[tt_key]++;
+                now_bit = 0;
+            }
+            if (char_now == 8)
+                break;
+        }
     }
 
     infile.close();

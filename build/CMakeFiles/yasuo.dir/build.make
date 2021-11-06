@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/voyage/code/yasuo
+CMAKE_SOURCE_DIR = /home/voyage/code/yasuo/huffman_con
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/voyage/code/yasuo/build
+CMAKE_BINARY_DIR = /home/voyage/code/yasuo/huffman_con/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/yasuo.dir/depend.make
@@ -59,68 +59,68 @@ include CMakeFiles/yasuo.dir/flags.make
 
 CMakeFiles/yasuo.dir/main.o: CMakeFiles/yasuo.dir/flags.make
 CMakeFiles/yasuo.dir/main.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/yasuo.dir/main.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/main.o -c /home/voyage/code/yasuo/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/huffman_con/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/yasuo.dir/main.o"
+	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/main.o -c /home/voyage/code/yasuo/huffman_con/main.cpp
 
 CMakeFiles/yasuo.dir/main.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yasuo.dir/main.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/main.cpp > CMakeFiles/yasuo.dir/main.i
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/huffman_con/main.cpp > CMakeFiles/yasuo.dir/main.i
 
 CMakeFiles/yasuo.dir/main.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yasuo.dir/main.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/main.cpp -o CMakeFiles/yasuo.dir/main.s
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/huffman_con/main.cpp -o CMakeFiles/yasuo.dir/main.s
 
 CMakeFiles/yasuo.dir/small.o: CMakeFiles/yasuo.dir/flags.make
 CMakeFiles/yasuo.dir/small.o: ../small.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/yasuo.dir/small.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/small.o -c /home/voyage/code/yasuo/small.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/huffman_con/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/yasuo.dir/small.o"
+	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/small.o -c /home/voyage/code/yasuo/huffman_con/small.cpp
 
 CMakeFiles/yasuo.dir/small.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yasuo.dir/small.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/small.cpp > CMakeFiles/yasuo.dir/small.i
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/huffman_con/small.cpp > CMakeFiles/yasuo.dir/small.i
 
 CMakeFiles/yasuo.dir/small.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yasuo.dir/small.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/small.cpp -o CMakeFiles/yasuo.dir/small.s
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/huffman_con/small.cpp -o CMakeFiles/yasuo.dir/small.s
 
 CMakeFiles/yasuo.dir/big.o: CMakeFiles/yasuo.dir/flags.make
 CMakeFiles/yasuo.dir/big.o: ../big.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/yasuo.dir/big.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/big.o -c /home/voyage/code/yasuo/big.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/huffman_con/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/yasuo.dir/big.o"
+	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/big.o -c /home/voyage/code/yasuo/huffman_con/big.cpp
 
 CMakeFiles/yasuo.dir/big.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yasuo.dir/big.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/big.cpp > CMakeFiles/yasuo.dir/big.i
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/huffman_con/big.cpp > CMakeFiles/yasuo.dir/big.i
 
 CMakeFiles/yasuo.dir/big.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yasuo.dir/big.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/big.cpp -o CMakeFiles/yasuo.dir/big.s
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/huffman_con/big.cpp -o CMakeFiles/yasuo.dir/big.s
 
 CMakeFiles/yasuo.dir/huffman.o: CMakeFiles/yasuo.dir/flags.make
 CMakeFiles/yasuo.dir/huffman.o: ../huffman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/yasuo.dir/huffman.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/huffman.o -c /home/voyage/code/yasuo/huffman.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/huffman_con/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/yasuo.dir/huffman.o"
+	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/huffman.o -c /home/voyage/code/yasuo/huffman_con/huffman.cpp
 
 CMakeFiles/yasuo.dir/huffman.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yasuo.dir/huffman.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/huffman.cpp > CMakeFiles/yasuo.dir/huffman.i
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/huffman_con/huffman.cpp > CMakeFiles/yasuo.dir/huffman.i
 
 CMakeFiles/yasuo.dir/huffman.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yasuo.dir/huffman.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/huffman.cpp -o CMakeFiles/yasuo.dir/huffman.s
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/huffman_con/huffman.cpp -o CMakeFiles/yasuo.dir/huffman.s
 
 CMakeFiles/yasuo.dir/tempwindow.o: CMakeFiles/yasuo.dir/flags.make
 CMakeFiles/yasuo.dir/tempwindow.o: ../tempwindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/yasuo.dir/tempwindow.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/tempwindow.o -c /home/voyage/code/yasuo/tempwindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/voyage/code/yasuo/huffman_con/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/yasuo.dir/tempwindow.o"
+	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yasuo.dir/tempwindow.o -c /home/voyage/code/yasuo/huffman_con/tempwindow.cpp
 
 CMakeFiles/yasuo.dir/tempwindow.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yasuo.dir/tempwindow.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/tempwindow.cpp > CMakeFiles/yasuo.dir/tempwindow.i
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/voyage/code/yasuo/huffman_con/tempwindow.cpp > CMakeFiles/yasuo.dir/tempwindow.i
 
 CMakeFiles/yasuo.dir/tempwindow.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yasuo.dir/tempwindow.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/tempwindow.cpp -o CMakeFiles/yasuo.dir/tempwindow.s
+	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/voyage/code/yasuo/huffman_con/tempwindow.cpp -o CMakeFiles/yasuo.dir/tempwindow.s
 
 # Object files for target yasuo
 yasuo_OBJECTS = \
@@ -140,7 +140,7 @@ yasuo: CMakeFiles/yasuo.dir/huffman.o
 yasuo: CMakeFiles/yasuo.dir/tempwindow.o
 yasuo: CMakeFiles/yasuo.dir/build.make
 yasuo: CMakeFiles/yasuo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/voyage/code/yasuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable yasuo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/voyage/code/yasuo/huffman_con/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable yasuo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/yasuo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -153,6 +153,6 @@ CMakeFiles/yasuo.dir/clean:
 .PHONY : CMakeFiles/yasuo.dir/clean
 
 CMakeFiles/yasuo.dir/depend:
-	cd /home/voyage/code/yasuo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/voyage/code/yasuo /home/voyage/code/yasuo /home/voyage/code/yasuo/build /home/voyage/code/yasuo/build /home/voyage/code/yasuo/build/CMakeFiles/yasuo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/voyage/code/yasuo/huffman_con/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/voyage/code/yasuo/huffman_con /home/voyage/code/yasuo/huffman_con /home/voyage/code/yasuo/huffman_con/build /home/voyage/code/yasuo/huffman_con/build /home/voyage/code/yasuo/huffman_con/build/CMakeFiles/yasuo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/yasuo.dir/depend
 

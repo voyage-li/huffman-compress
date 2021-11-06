@@ -6,39 +6,33 @@
 
 #IncludeRegexTransform: 
 
-/home/voyage/code/yasuo/big.cpp
-big.h
-/home/voyage/code/yasuo/big.h
-bits/stdc++.h
--
-
-/home/voyage/code/yasuo/big.h
+/home/voyage/code/yasuo/huffman_con/big.h
 huffman.h
-/home/voyage/code/yasuo/huffman.h
+/home/voyage/code/yasuo/huffman_con/huffman.h
 tempwindow.h
-/home/voyage/code/yasuo/tempwindow.h
+/home/voyage/code/yasuo/huffman_con/tempwindow.h
 
-/home/voyage/code/yasuo/huffman.h
+/home/voyage/code/yasuo/huffman_con/huffman.h
 bits/stdc++.h
 -
 
-/home/voyage/code/yasuo/small.cpp
+/home/voyage/code/yasuo/huffman_con/main.cpp
+bits/stdc++.h
+-
+huffman.h
+/home/voyage/code/yasuo/huffman_con/huffman.h
 small.h
-/home/voyage/code/yasuo/small.h
-bits/stdc++.h
--
+/home/voyage/code/yasuo/huffman_con/small.h
+big.h
+/home/voyage/code/yasuo/huffman_con/big.h
+tempwindow.h
+/home/voyage/code/yasuo/huffman_con/tempwindow.h
 
-/home/voyage/code/yasuo/small.h
+/home/voyage/code/yasuo/huffman_con/small.h
 huffman.h
-/home/voyage/code/yasuo/huffman.h
+/home/voyage/code/yasuo/huffman_con/huffman.h
 tempwindow.h
-/home/voyage/code/yasuo/tempwindow.h
+/home/voyage/code/yasuo/huffman_con/tempwindow.h
 
-/home/voyage/code/yasuo/tempwindow.cpp
-tempwindow.h
-/home/voyage/code/yasuo/tempwindow.h
-bits/stdc++.h
--
-
-/home/voyage/code/yasuo/tempwindow.h
+/home/voyage/code/yasuo/huffman_con/tempwindow.h
 

@@ -7,5 +7,5 @@ typedef struct HTNode
     int parent, lchild, rchild;
 } HTNode, *HuffmanTree;
 
-void init(HuffmanTree &HT, std::map<char, int> &map, std::map<char, char *> &HC, char *&re);
+void init(HuffmanTree &HT, std::map<int, int> &map, std::map<int, char *> &HC, char *&re);
 void select(HuffmanTree &HT, int n);

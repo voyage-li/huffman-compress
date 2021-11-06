@@ -21,8 +21,8 @@ int main()
         }
         else if (tmp == 2)
         {
-            big a;
-            a.decompress();
+            // big a;
+            // a.decompress();
         }
         else if (tmp == 3)
             break;
