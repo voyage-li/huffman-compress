@@ -16,13 +16,13 @@ int main()
         std::cin >> tmp;
         if (tmp == 1)
         {
-            small a;
-            a.compress();
+            small comfile;
+            comfile.compress();
         }
         else if (tmp == 2)
         {
-            // big a;
-            // a.decompress();
+            big defile;
+            defile.decompress();
         }
         else if (tmp == 3)
             break;

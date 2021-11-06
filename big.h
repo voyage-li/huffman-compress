@@ -10,9 +10,10 @@ public:
     void decompress_output();
 
 private:
-    float size;
-    int now_byte;
-    char *re;
+    int EOF_loc;              //map中用来表示 EOF的 key
+    int select;               //压缩单位选择
+    float size;               //文件大小
+    int now_byte;             //已经读取的字符数
     std::string data_path;    //需要解压的文件的路径
     std::string ans_path;     //解压完成的文件路径
     std::map<int, int> map;   //需要解压的文件中不同字符的数量

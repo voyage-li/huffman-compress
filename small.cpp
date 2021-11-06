@@ -4,6 +4,7 @@
 small::small()
 {
     now_byte = 0;
+    char_size = 0;
 }
 
 void small::compress()
@@ -44,16 +45,18 @@ bool small::compress_input()
     std::cout << "请输入压缩文件存储路径:" << std::endl;
     getline(std::cin, ans_path);
 
-    system("clear");
-    std::cout << "               压缩进度                  " << std::endl;
-    std::cout << "正在获取文件大小..." << std::endl;
-
     std::ifstream tempfile(data_path.c_str(), std::ios::in | std::ios::binary);
     if (!tempfile)
     {
         std::cout << "文件打开错误！" << std::endl;
+        getchar();
         return false;
     }
+
+    system("clear");
+    std::cout << "               压缩进度                  " << std::endl;
+    std::cout << "正在获取文件大小..." << std::endl;
+
     tempfile.seekg(0, std::ios::end);
     size = tempfile.tellg();
     tempfile.close();
@@ -67,12 +70,13 @@ bool small::compress_input()
     int char_now = 0;             //用来记录当前读取的字符使用到的 bit
     while (infile.get(c))
     {
+        char_size++;
         char_now = 0;
         while (char_now < 8)
         {
             while (char_now < 8)
             {
-                tt_key += ((int)c) & (1 << (every - 1 - char_now));
+                tt_key += (((int)c >> (7 - char_now)) & 1) << (every - 1 - now_bit);
                 char_now++;
                 now_bit++;
                 if (now_bit == every)
@@ -85,12 +89,12 @@ bool small::compress_input()
                 else
                     map[tt_key]++;
                 now_bit = 0;
+                tt_key = 0;
             }
         }
     }
     if (now_bit != 0)
     {
-        more_bits = every - now_bit; //文件不够长 末尾补0 记录补的位数
         if (map.count(tt_key) == 0)
             map[tt_key] = 1;
         else
@@ -118,7 +122,8 @@ void small::compress_output()
         return;
     }
 
-    //输出压缩的单位
+    //输出压缩的单位以及总字符
+    outfile << char_size << '|';
     outfile.put(select + '0');
     outfile.put('|');
 
@@ -161,7 +166,7 @@ void small::compress_output()
         {
             while (char_now < 8)
             {
-                tt_key += ((int)c) & (1 << (every - 1 - char_now));
+                tt_key += (((int)c >> (7 - char_now)) & 1) << (every - 1 - now_bit);
                 char_now++;
                 now_bit++;
                 if (now_bit == every)
@@ -184,6 +189,7 @@ void small::compress_output()
                 }
                 tmp_struct = {now_byte, size}; //实时更新当前的进度
                 now_bit = 0;
+                tt_key = 0;
             }
         }
     }
