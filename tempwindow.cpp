@@ -17,7 +17,7 @@ void *possesion(void *threadarg)
         for (int i = 0; i < temp_n; i++)
             putchar(' ');
         std::cout << "]  " << (int)(100 * (now_byte / size)) << "%  ";
-        if ((100 * (now_byte / size)) > 98)
+        if ((100 * (now_byte / size)) > 99)
             break;
         //不敢写100 因为字节可能计算失误 可能会导致进度条最后跳一下 不过问题应该不是很大
     }
