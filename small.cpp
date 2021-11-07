@@ -45,21 +45,9 @@ bool small::compress_input()
     std::cout << "请输入压缩文件存储路径:" << std::endl;
     getline(std::cin, ans_path);
 
-    std::ifstream tempfile(data_path.c_str(), std::ios::in | std::ios::binary);
-    if (!tempfile)
-    {
-        std::cout << "文件打开错误！" << std::endl;
-        getchar();
-        return false;
-    }
-
     system("clear");
     std::cout << "               压缩进度                  " << std::endl;
     std::cout << "正在获取文件大小..." << std::endl;
-
-    tempfile.seekg(0, std::ios::end);
-    size = tempfile.tellg();
-    tempfile.close();
 
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
 
@@ -118,11 +106,14 @@ void small::compress_output()
         std::cout << "文件打开错误！" << std::endl;
         return;
     }
-
+    size = char_size;
     //输出压缩的单位以及总字符
     outfile << char_size << '|';
     outfile.put(select + '0');
     outfile.put('|');
+
+    std::cout << "开始压缩..." << std::endl;
+    std::cout << "[                                        ] 0%";
 
     int fre = map.size();
     for (int i = 1; i <= fre; i++)
@@ -144,10 +135,6 @@ void small::compress_output()
     poss_help tmp_struct;
     tmp_struct = {now_byte, size};
     pthread_create(&threads, NULL, possesion, (void *)&tmp_struct);
-
-    // int num_0 = 0, num_8 = 0;
-    std::cout << "开始压缩..." << std::endl;
-    std::cout << "[                                        ] 0%";
 
     //主要输出部分
     char c;
@@ -210,7 +197,6 @@ void small::compress_output()
     //输出可能没有到达8bit的最后一个字符
     if (num != 0)
         outfile.put((char)tt);
-
     std::cout << '\r' << "[########################################] 100%  ";
 
     infile.close();

@@ -3,7 +3,7 @@
 
 big::big()
 {
-    now_byte = 2; //刚开始有两个字符代表压缩位数以及'|'(区分正文)
+    now_byte = 0; //刚开始有两个字符代表压缩位数以及'|'(区分正文)
 }
 void big::decompress()
 {
@@ -26,11 +26,6 @@ void big::decompress_input()
     std::cout << "               解压进度                  " << std::endl;
     std::cout << "正在获取文件大小..." << std::endl;
 
-    std::ifstream tempfile(data_path.c_str(), std::ios::in | std::ios::binary);
-    tempfile.seekg(0, std::ios::end);
-    size = tempfile.tellg();
-    tempfile.close();
-
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
     std::ofstream outfile(ans_path.c_str(), std::ios::out | std::ios::binary);
     if (!infile)
@@ -39,55 +34,39 @@ void big::decompress_input()
         return;
     }
 
-    //假设这里我是成功开了一个多线程
-    pthread_t threads;
-    poss_help tmp_struct;
-    tmp_struct = {now_byte, size};
-    pthread_create(&threads, NULL, possesion, (void *)&tmp_struct);
-
-    std::cout << "开始解压..." << std::endl;
-    std::cout << "[                                        ] 0%";
-
     char tmp;
     int num;
     int fff;
     int char_size;
 
+    //假设这里我是成功开了一个多线程
+
     infile >> char_size >> tmp; //获取压缩基本符号单元
     infile >> select >> tmp;    //获取压缩基本符号单元
     int every = select * 4;
 
+    size = char_size;
+
     while (1)
     {
-        now_byte += 2;
-
         infile >> fff >> tmp >> num;
         map[fff] = num;
 
-        //计算需要增加的字节长度
-        int loc = 0;
-        while (num != 0)
-        {
-            num /= 10;
-            loc++;
-        }
-        now_byte += loc;
-        loc = 0;
-        while (fff != 0)
-        {
-            fff /= 10;
-            loc++;
-        }
-        now_byte += loc;
         infile.get(tmp);
-        now_byte++;
+
         if (tmp != '|')
             break;
-
-        tmp_struct = {now_byte, size};
     }
 
-    init(HT, map, HC);
+    init_for_de(HT, map);
+
+    std::cout << "开始解压..." << std::endl;
+    std::cout << "[                                        ] 0%";
+
+    pthread_t threads;
+    poss_help tmp_struct;
+    tmp_struct = {now_byte, size};
+    pthread_create(&threads, NULL, possesion, (void *)&tmp_struct);
 
     char ans[8];
     char c;
@@ -98,7 +77,6 @@ void big::decompress_input()
     int out_tmp = 0; //用来记录输出的字符
     while (1)
     {
-        now_byte++;
         infile.get(c);
         int tt = c;
         index = 0;
@@ -130,6 +108,8 @@ void big::decompress_input()
                     {
                         char_size--;
                         outfile.put(out_tmp);
+                        now_byte++;
+                        tmp_struct = {now_byte, size};
                         out_tmp = 0;
                         now_bit = 0;
                     }
@@ -144,8 +124,6 @@ void big::decompress_input()
         }
         if (char_size == 0)
             break;
-
-        tmp_struct = {now_byte, size};
     }
 
     std::cout << '\r' << "[########################################] 100%  ";
