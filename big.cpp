@@ -55,8 +55,7 @@ void big::decompress_input()
 
     infile >> char_size >> tmp; //获取压缩基本符号单元
     infile >> select >> tmp;    //获取压缩基本符号单元
-    int every = select * 0.5 * 8;
-    EOF_loc = pow(2, every) - 1;
+    int every = select * 4;
 
     while (1)
     {
@@ -93,7 +92,6 @@ void big::decompress_input()
     char ans[8];
     char c;
     int index = 0;
-    int flag = 0;
     int fre = map.size();
     int now = 2 * fre - 1;
     int now_bit = 0; //记录当前输出字符到的bit
@@ -116,40 +114,35 @@ void big::decompress_input()
             index++;
             if (HT[now].lchild == 0)
             {
-                if (now != fre)
-                {
-                    //获取对应权值对应的 bit位
-                    int int_to_char = HT[now].key;
-                    char ans[every + 1];
-                    ans[every] = '\0';
-                    for (int j = 0; j < every; j++)
-                        ans[j] = ((int_to_char >> (every - 1 - j)) & 1) + '0';
+                //获取对应权值对应的 bit位
+                int int_to_char = HT[now].key;
+                char ans[every + 1];
+                ans[every] = '\0';
+                for (int j = 0; j < every; j++)
+                    ans[j] = ((int_to_char >> (every - 1 - j)) & 1) + '0';
 
-                    int j = 0;
-                    while (ans[j] != '\0')
+                int j = 0;
+                while (ans[j] != '\0')
+                {
+                    now_bit++;
+                    out_tmp += (ans[j] - '0') << (8 - now_bit);
+                    if (now_bit == 8)
                     {
-                        now_bit++;
-                        out_tmp += (ans[j] - '0') << (8 - now_bit);
-                        if (now_bit == 8)
-                        {
-                            char_size--;
-                            outfile.put(out_tmp);
-                            out_tmp = 0;
-                            now_bit = 0;
-                        }
-                        j++;
-                        if (char_size == 0)
-                            break;
+                        char_size--;
+                        outfile.put(out_tmp);
+                        out_tmp = 0;
+                        now_bit = 0;
                     }
-                    now = 2 * fre - 1;
+                    j++;
+                    if (char_size == 0)
+                        break;
                 }
-                else
-                    flag = 1;
+                now = 2 * fre - 1;
             }
-            if (flag == 1 || index == 8 || char_size == 0)
+            if (index == 8 || char_size == 0)
                 break;
         }
-        if (flag == 1 || char_size == 0)
+        if (char_size == 0)
             break;
 
         tmp_struct = {now_byte, size};

@@ -10,7 +10,6 @@ public:
     void decompress_output();
 
 private:
-    int EOF_loc;              //map中用来表示 EOF的 key
     int select;               //压缩单位选择
     float size;               //文件大小
     int now_byte;             //已经读取的字符数

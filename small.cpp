@@ -101,9 +101,6 @@ bool small::compress_input()
             map[tt_key]++;
     }
 
-    EOF_loc = pow(2, every) - 1;
-    map[EOF_loc] = 1; //记录EOF
-
     infile.close();
 
     init(HT, map, HC); //生成 Huffman 树以及 Huffman 编码
@@ -208,20 +205,6 @@ void small::compress_output()
                 num = 0;
                 tt = 0;
             }
-        }
-    }
-
-    i = 0;
-    while (HC[EOF_loc][i] != '\0')
-    {
-        tt += (HC[EOF_loc][i] - '0') << (7 - num);
-        i++;
-        num++;
-        if (num == 8)
-        {
-            outfile.put(tt);
-            num = 0;
-            tt = 0;
         }
     }
     //输出可能没有到达8bit的最后一个字符

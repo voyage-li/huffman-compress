@@ -10,7 +10,6 @@ public:
     void compress_output();
 
 private:
-    int EOF_loc;              //map中用来表示 EOF的 key
     int select;               //压缩单位选择
     float size;               //文件大小
     int char_size;            //防止读取出现错误 再自己计算 一下总字符 后期应该可以删掉
