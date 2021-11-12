@@ -16,7 +16,10 @@ void small::compress()
     std::cout << "7. 3.5字节   8. 4.0字节" << std::endl;
     std::cin >> select;
 
-    if (select < 1 || select > 8)
+    std::cout << "请选择n元huffman树(2~16):" << std::endl;
+    std::cin >> tree_n;
+
+    if (select < 1 || select > 8 || tree_n < 2 || tree_n > 16)
     {
         std::cout << "输入数据错误！" << std::endl;
         getchar();
@@ -29,11 +32,11 @@ void small::compress()
             return;
         compress_output();
     }
-
+    ///home/voyage/code/yasuo/huffman_con/source/1.txt
     std::cout << "\n已完成文件压缩！" << std::endl;
     std::cout << "压缩文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
-    output_huffmantree(HT, map);
+    // output_huffmantree(HT, map);
     getchar();
 }
 
@@ -91,7 +94,7 @@ bool small::compress_input()
 
     infile.close();
 
-    init(HT, map, HC); //生成 Huffman 树以及 Huffman 编码
+    init(HT, map, HC, tree_n); //生成 Huffman 树以及 Huffman 编码
 
     return true;
 }
@@ -107,7 +110,8 @@ void small::compress_output()
         return;
     }
     size = char_size;
-    //输出压缩的单位以及总字符
+    //输出 huffman树元数压缩的单位以及总字符
+    outfile << tree_n << '|';
     outfile << char_size << '|';
     outfile.put(select + '0');
     outfile.put('|');
@@ -197,6 +201,7 @@ void small::compress_output()
     //输出可能没有到达8bit的最后一个字符
     if (num != 0)
         outfile.put((char)tt);
+    tmp_struct = {now_byte, size};
     std::cout << '\r' << "[########################################] 100%  ";
 
     infile.close();

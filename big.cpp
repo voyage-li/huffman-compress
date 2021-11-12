@@ -41,6 +41,7 @@ void big::decompress_input()
 
     //假设这里我是成功开了一个多线程
 
+    infile >> tree_n >> tmp;    //获取 Huffman树元数
     infile >> char_size >> tmp; //获取压缩基本符号单元
     infile >> select >> tmp;    //获取压缩基本符号单元
     int every = select * 4;
@@ -58,7 +59,7 @@ void big::decompress_input()
             break;
     }
 
-    init_for_de(HT, map);
+    init_for_de(HT, map, tree_n);
 
     std::cout << "开始解压..." << std::endl;
     std::cout << "[                                        ] 0%";
@@ -72,9 +73,22 @@ void big::decompress_input()
     char c;
     int index = 0;
     int fre = map.size();
-    int now = 2 * fre - 1;
+    int root_loc;
+    int now;
     int now_bit = 0; //记录当前输出字符到的bit
     int out_tmp = 0; //用来记录输出的字符
+    int wei = judge(tree_n);
+    int wei_now = 0;
+    int switch_child = 0;
+
+    for (root_loc = 1; root_loc < 2 * fre; root_loc++)
+    {
+        if (HT[root_loc].parent == 0)
+            break;
+    }
+
+    now = root_loc;
+
     while (1)
     {
         infile.get(c);
@@ -85,25 +99,30 @@ void big::decompress_input()
         index = 0;
         while (1)
         {
-            if (ans[index] == '0')
-                now = HT[now].lchild;
-            else
-                now = HT[now].rchild;
+            switch_child += (ans[index] - '0') << (wei - 1 - wei_now);
+            wei_now++;
+            if (wei == wei_now)
+            {
+                wei_now = 0;
+                now = HT[now].child[switch_child];
+                switch_child = 0;
+            }
             index++;
-            if (HT[now].lchild == 0)
+
+            if (HT[now].child[0] == 0)
             {
                 //获取对应权值对应的 bit位
                 int int_to_char = HT[now].key;
-                char ans[every + 1];
-                ans[every] = '\0';
+                char ans_[every + 1];
+                ans_[every] = '\0';
                 for (int j = 0; j < every; j++)
-                    ans[j] = ((int_to_char >> (every - 1 - j)) & 1) + '0';
+                    ans_[j] = ((int_to_char >> (every - 1 - j)) & 1) + '0';
 
                 int j = 0;
-                while (ans[j] != '\0')
+                while (ans_[j] != '\0')
                 {
                     now_bit++;
-                    out_tmp += (ans[j] - '0') << (8 - now_bit);
+                    out_tmp += (ans_[j] - '0') << (8 - now_bit);
                     if (now_bit == 8)
                     {
                         char_size--;
@@ -117,7 +136,7 @@ void big::decompress_input()
                     if (char_size == 0)
                         break;
                 }
-                now = 2 * fre - 1;
+                now = root_loc;
             }
             if (index == 8 || char_size == 0)
                 break;

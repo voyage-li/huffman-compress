@@ -11,6 +11,7 @@ public:
 
 private:
     int select;               //压缩单位选择
+    int tree_n;               //n元Huffman树
     float size;               //文件大小
     int char_size;            //防止读取出现错误 再自己计算 一下总字符 后期应该可以删掉
     int now_byte;             //当前读取到的的文件位数

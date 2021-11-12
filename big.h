@@ -11,6 +11,7 @@ public:
 
 private:
     int select;               //压缩单位选择
+    int tree_n;               //n元Huffman树
     float size;               //文件大小
     int now_byte;             //已经读取的字符数
     std::string data_path;    //需要解压的文件的路径
