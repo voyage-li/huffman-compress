@@ -16,18 +16,16 @@ void big::decompress()
 }
 void big::decompress_input()
 {
-    std::cout << "请输入需要解压的文件的路径:" << std::endl;
+    std::cout << "请输入需要解压的文件的路径(解压文件会存在相同的目录):" << std::endl;
     getchar();
     getline(std::cin, data_path);
-    std::cout << "请输入解压文件存储路径:" << std::endl;
-    getline(std::cin, ans_path);
 
     system("clear");
     std::cout << "               解压进度                  " << std::endl;
     std::cout << "正在获取文件大小..." << std::endl;
 
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
-    std::ofstream outfile(ans_path.c_str(), std::ios::out | std::ios::binary);
+
     if (!infile)
     {
         std::cout << "文件打开错误！" << std::endl;
@@ -41,6 +39,7 @@ void big::decompress_input()
 
     //假设这里我是成功开了一个多线程
 
+    infile >> type;             //获取解压文件格式
     infile >> tree_n >> tmp;    //获取 Huffman树元数
     infile >> char_size >> tmp; //获取压缩基本符号单元
     infile >> select >> tmp;    //获取压缩基本符号单元
@@ -60,6 +59,15 @@ void big::decompress_input()
     }
 
     init_for_de(HT, map, tree_n);
+
+    int temp_len = data_path.length();
+    int point_loc = 0;
+    for (point_loc = temp_len - 1; point_loc > 0; point_loc--)
+        if (data_path[point_loc] == '.')
+            break;
+    ans_path = data_path.substr(0, point_loc) + "_." + type;
+
+    std::ofstream outfile(ans_path.c_str(), std::ios::out | std::ios::binary);
 
     std::cout << "开始解压..." << std::endl;
     std::cout << "[                                        ] 0%";

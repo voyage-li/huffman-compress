@@ -36,17 +36,23 @@ void small::compress()
     std::cout << "\n已完成文件压缩！" << std::endl;
     std::cout << "压缩文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
-    // output_huffmantree(HT, map);
+    output_huffmantree(HT, map, tree_n);
     getchar();
 }
 
 bool small::compress_input()
 {
-    std::cout << "请输入需要压缩的文件的路径:" << std::endl;
+    std::cout << "请输入需要压缩的文件的路径(压缩后的文件会存在同路径,后缀为.dat):" << std::endl;
     getchar();
     getline(std::cin, data_path);
-    std::cout << "请输入压缩文件存储路径:" << std::endl;
-    getline(std::cin, ans_path);
+    //截取存储路径 截取文件格式
+    int temp_len = data_path.length();
+    int point_loc = 0;
+    for (point_loc = temp_len - 1; point_loc > 0; point_loc--)
+        if (data_path[point_loc] == '.')
+            break;
+    ans_path = data_path.substr(0, point_loc) + ".dat";
+    type = data_path.substr(point_loc + 1, temp_len + 1 - point_loc);
 
     system("clear");
     std::cout << "               压缩进度                  " << std::endl;
@@ -110,7 +116,8 @@ void small::compress_output()
         return;
     }
     size = char_size;
-    //输出 huffman树元数压缩的单位以及总字符
+    //输出文件格式 huffman树元数压缩的单位以及总字符
+    outfile << type << ' ';
     outfile << tree_n << '|';
     outfile << char_size << '|';
     outfile.put(select + '0');

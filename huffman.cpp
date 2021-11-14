@@ -161,13 +161,20 @@ void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
     }
 }
 
-void output_huffmantree(HuffmanTree &HT, std::map<int, int> &map)
+void output_huffmantree(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
 {
     std::cout << "Huffman树：" << std::endl;
-    printf("       |  key   | weight | parent |  lch   | rch \n");
+    printf("       |  key   | weight | parent |  ch\n");
     int fre = map.size();
     for (long long int i = 1; i < 2 * fre; i++)
-        printf("%6lld | %6lld | %6d | %6lld | %6lld | %6lld \n", i, HT[i].key, HT[i].weight, HT[i].parent, HT[i].child[0], HT[i].child[1]);
+    {
+        if (HT[i].parent == 0)
+            break;
+        printf("%6lld | %6lld | %6d | %6lld ", i, HT[i].key, HT[i].weight, HT[i].parent);
+        for (int j = 0; j < tree_n; j++)
+            printf("| %6lld ", HT[i].child[j]);
+        putchar('\n');
+    }
 }
 
 int judge(int a) //判断编码
