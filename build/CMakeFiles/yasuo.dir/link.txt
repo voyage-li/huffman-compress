@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-g++-9   -std=c++11  -pthread -g  -rdynamic CMakeFiles/yasuo.dir/main.o CMakeFiles/yasuo.dir/small.o CMakeFiles/yasuo.dir/big.o CMakeFiles/yasuo.dir/huffman.o CMakeFiles/yasuo.dir/tempwindow.o  -o yasuo 
