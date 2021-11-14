@@ -33,10 +33,11 @@ void small::compress()
         compress_output();
     }
     ///home/voyage/code/yasuo/huffman_con/source/1.txt
-    std::cout << "\n已完成文件压缩！" << std::endl;
+    putchar('\n');
+    output_huffmantree(HT, map, tree_n);
+    std::cout << "已完成文件压缩！" << std::endl;
     std::cout << "压缩文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
-    output_huffmantree(HT, map, tree_n);
     getchar();
 }
 
@@ -209,7 +210,6 @@ void small::compress_output()
     if (num != 0)
         outfile.put((char)tt);
     tmp_struct = {now_byte, size};
-    std::cout << '\r' << "[########################################] 100%  ";
 
     infile.close();
     outfile.close();

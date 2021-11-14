@@ -152,8 +152,6 @@ void big::decompress_input()
         if (char_size == 0)
             break;
     }
-
-    std::cout << '\r' << "[########################################] 100%  ";
     infile.close();
     outfile.close();
 }

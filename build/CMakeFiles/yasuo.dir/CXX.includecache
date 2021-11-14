@@ -6,19 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/voyage/code/yasuo/huffman_con/big.cpp
-big.h
-/home/voyage/code/yasuo/huffman_con/big.h
-bits/stdc++.h
--
-
-/home/voyage/code/yasuo/huffman_con/big.h
-huffman.h
-/home/voyage/code/yasuo/huffman_con/huffman.h
+/home/voyage/code/yasuo/huffman_con/tempwindow.cpp
 tempwindow.h
 /home/voyage/code/yasuo/huffman_con/tempwindow.h
-
-/home/voyage/code/yasuo/huffman_con/huffman.h
 bits/stdc++.h
 -
 
