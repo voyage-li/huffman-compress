@@ -1,6 +1,6 @@
 #include "huffman.h"
 
-void init(HuffmanTree &HT, std::map<int, int> &map, std::map<int, char *> &HC, int tree_n)
+void init(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char *> &HC, int tree_n)
 {
     std::cout << "正在构造Huffman树：" << std::endl;
     //初始化 huffman树
