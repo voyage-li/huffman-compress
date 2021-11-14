@@ -19,5 +19,5 @@ private:
     std::string type;         //用来存储被压缩的文件的格式
     std::map<int, int> map;   //需要解压的文件中不同字符的数量
     std::map<int, char *> HC; //不同字符对应的 huffman编码
-    HuffmanTree HT;
+    HuffmanTree HT;           //huffman树
 };
