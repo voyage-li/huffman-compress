@@ -44,11 +44,16 @@ void small::compress()
     }
 
     putchar('\n');
-    output_huffmantree(HT, map, tree_n);
     std::cout << "已完成文件压缩！" << std::endl;
     std::cout << "压缩文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
-    getchar();
+    std::cout << "是否展示huffman树：(Enter跳过，其他字符展示)：\n";
+    char c = getchar();
+    if (c != '\n')
+    {
+        output_huffmantree(HT, map, tree_n);
+        getchar();
+    }
 }
 
 bool small::compress_input()

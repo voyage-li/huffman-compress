@@ -9,7 +9,6 @@ void big::decompress()
 {
     if (!decompress_input_output())
         return;
-    // decompress_output();
     std::cout << "\n已完成文件解压！" << std::endl;
     std::cout << "解压文件路径：" << std::endl;
     std::cout << ans_path << std::endl;

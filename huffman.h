@@ -15,9 +15,9 @@ typedef struct HTNode
 
 bool operator>(HTNode a, HTNode b);
 
-void init(HuffmanTree &HT, std::unordered_map<int, int> &map, std::unordered_map<int, char *> &HC, int tree_n);
-void init_for_de(HuffmanTree &HT, std::unordered_map<int, int> &map, int tree_n);
+void init(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char *> &HC, int tree_n);
+void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n);
 void select(HuffmanTree &HT, int n);
-void output_huffmantree(HuffmanTree &HT, std::unordered_map<int, int> &map, int tree_n);
+void output_huffmantree(HuffmanTree &HT, std::map<int, int> &map, int tree_n);
 
 int judge(int a);
