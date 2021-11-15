@@ -15,10 +15,9 @@ void init(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char
             HT[i].child[j] = 0;
         HT[i].parent = 0;
     }
-    std::map<int, int>::iterator iter;
     int index = 1;
     HT[0].weight = INT_MAX;
-    for (iter = map.begin(); iter != map.end(); iter++, index++)
+    for (auto iter = map.begin(); iter != map.end(); iter++, index++)
     {
         HT[index].key = iter->first;
         HT[index].weight = iter->second;
@@ -106,10 +105,9 @@ void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
             HT[i].child[j] = 0;
         HT[i].parent = 0;
     }
-    std::map<int, int>::iterator iter;
     int index = 1;
     HT[0].weight = INT_MAX;
-    for (iter = map.begin(); iter != map.end(); iter++, index++)
+    for (auto iter = map.begin(); iter != map.end(); iter++, index++)
     {
         HT[index].key = iter->first;
         HT[index].weight = iter->second;
