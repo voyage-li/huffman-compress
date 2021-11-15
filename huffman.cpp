@@ -1,6 +1,6 @@
 #include "huffman.h"
 
-void init(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char *> &HC, int tree_n)
+void init(HuffmanTree &HT, std::unordered_map<int, int> &map, std::unordered_map<int, char *> &HC, int tree_n)
 {
     std::cout << "正在构造Huffman树：" << std::endl;
     //初始化 huffman树
@@ -15,7 +15,7 @@ void init(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char
             HT[i].child[j] = 0;
         HT[i].parent = 0;
     }
-    std::map<int, int>::iterator iter;
+    std::unordered_map<int, int>::iterator iter;
     int index = 1;
     HT[0].weight = INT_MAX;
     for (iter = map.begin(); iter != map.end(); iter++, index++)
@@ -91,7 +91,7 @@ void init(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char
         strcpy(HC[HT[i].key], &cd[start]);
     }
 }
-void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
+void init_for_de(HuffmanTree &HT, std::unordered_map<int, int> &map, int tree_n)
 {
     std::cout << "正在构造Huffman树：" << std::endl;
     //初始化 huffman树
@@ -106,7 +106,7 @@ void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
             HT[i].child[j] = 0;
         HT[i].parent = 0;
     }
-    std::map<int, int>::iterator iter;
+    std::unordered_map<int, int>::iterator iter;
     int index = 1;
     HT[0].weight = INT_MAX;
     for (iter = map.begin(); iter != map.end(); iter++, index++)
@@ -161,19 +161,19 @@ void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
     }
 }
 
-void output_huffmantree(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
+void output_huffmantree(HuffmanTree &HT, std::unordered_map<int, int> &map, int tree_n)
 {
     std::cout << "Huffman树：" << std::endl;
     printf("       |  key   | weight | parent |  ch\n");
     int fre = map.size();
     for (long long int i = 1; i < 2 * fre; i++)
     {
-        if (HT[i].parent == 0)
-            break;
         printf("%6lld | %6lld | %6d | %6lld ", i, HT[i].key, HT[i].weight, HT[i].parent);
         for (int j = 0; j < tree_n; j++)
             printf("| %6lld ", HT[i].child[j]);
         putchar('\n');
+        if (HT[i].parent == 0)
+            break;
     }
 }
 

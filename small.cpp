@@ -16,12 +16,22 @@ void small::compress()
     std::cout << "7. 3.5字节   8. 4.0字节" << std::endl;
     std::cin >> select;
 
+    if (select < 1 || select > 8)
+    {
+        std::cout << "输入数据错误！" << std::endl;
+        getchar();
+        getchar();
+        system("clear");
+        return;
+    }
+
     std::cout << "请选择n元huffman树(2~16):" << std::endl;
     std::cin >> tree_n;
 
-    if (select < 1 || select > 8 || tree_n < 2 || tree_n > 16)
+    if (tree_n < 2 || tree_n > 16)
     {
         std::cout << "输入数据错误！" << std::endl;
+        getchar();
         getchar();
         system("clear");
         return;
@@ -32,7 +42,7 @@ void small::compress()
             return;
         compress_output();
     }
-    ///home/voyage/code/yasuo/huffman_con/source/1.txt
+
     putchar('\n');
     output_huffmantree(HT, map, tree_n);
     std::cout << "已完成文件压缩！" << std::endl;
@@ -46,6 +56,7 @@ bool small::compress_input()
     std::cout << "请输入需要压缩的文件的路径(压缩后的文件会存在同路径,后缀为.dat):" << std::endl;
     getchar();
     getline(std::cin, data_path);
+
     //截取存储路径 截取文件格式
     int temp_len = data_path.length();
     int point_loc = 0;
@@ -55,11 +66,17 @@ bool small::compress_input()
     ans_path = data_path.substr(0, point_loc) + ".dat";
     type = data_path.substr(point_loc + 1, temp_len + 1 - point_loc);
 
+    std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
+    if (!infile)
+    {
+        std::cout << "文件打开错误！" << std::endl;
+        getchar();
+        return false;
+    }
+
     system("clear");
     std::cout << "               压缩进度                  " << std::endl;
     std::cout << "正在获取文件大小..." << std::endl;
-
-    std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
 
     char c;
     int every = 8 * select * 0.5; //单位 bit

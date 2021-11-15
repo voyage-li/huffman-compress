@@ -7,30 +7,32 @@ big::big()
 }
 void big::decompress()
 {
-    decompress_input();
+    if (!decompress_input_output())
+        return;
     // decompress_output();
     std::cout << "\n已完成文件解压！" << std::endl;
     std::cout << "解压文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
     getchar();
 }
-void big::decompress_input()
+bool big::decompress_input_output()
 {
     std::cout << "请输入需要解压的文件的路径(解压文件会存在相同的目录):" << std::endl;
     getchar();
     getline(std::cin, data_path);
-
-    system("clear");
-    std::cout << "               解压进度                  " << std::endl;
-    std::cout << "正在获取文件大小..." << std::endl;
 
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
 
     if (!infile)
     {
         std::cout << "文件打开错误！" << std::endl;
-        return;
+        getchar();
+        return false;
     }
+
+    system("clear");
+    std::cout << "               解压进度                  " << std::endl;
+    std::cout << "正在获取文件大小..." << std::endl;
 
     char tmp;
     int num;
@@ -152,9 +154,8 @@ void big::decompress_input()
         if (char_size == 0)
             break;
     }
+    tmp_struct = {now_byte, size};
     infile.close();
     outfile.close();
-}
-void big::decompress_output()
-{
+    return true;
 }
