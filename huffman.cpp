@@ -17,10 +17,11 @@ void init(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char
     }
     int index = 1;
     HT[0].weight = INT_MAX;
-    for (auto iter = map.begin(); iter != map.end(); iter++, index++)
+    for (auto iter : map)
     {
-        HT[index].key = iter->first;
-        HT[index].weight = iter->second;
+        HT[index].key = iter.first;
+        HT[index].weight = iter.second;
+        index++;
     }
 
     //使用优先队列构造huffman树
@@ -107,10 +108,11 @@ void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
     }
     int index = 1;
     HT[0].weight = INT_MAX;
-    for (auto iter = map.begin(); iter != map.end(); iter++, index++)
+    for (auto iter : map)
     {
-        HT[index].key = iter->first;
-        HT[index].weight = iter->second;
+        HT[index].key = iter.first;
+        HT[index].weight = iter.second;
+        index++;
     }
 
     //使用优先队列构造huffman树
