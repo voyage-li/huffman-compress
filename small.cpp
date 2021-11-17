@@ -95,10 +95,10 @@ bool small::compress_input()
 
     char c;
     int every = 8 * select * 0.5; //单位 bit
-    int tt_key = 0;               //用来记录 key
+    long long int tt_key = 0;     //用来记录 key
     int now_bit = 0;              //用来记录当前读入了多少个bit
     int char_now = 0;             //用来记录当前读取的字符使用到的 bit
-    std::unordered_map<int, int> temp_map;
+    std::unordered_map<long long int, int> temp_map;
     while (infile.get(c))
     {
         char_size++;
@@ -107,7 +107,7 @@ bool small::compress_input()
         {
             while (char_now < 8)
             {
-                tt_key += (((int)c >> (7 - char_now)) & 1) << (every - 1 - now_bit);
+                tt_key += (long long int)(((int)c >> (7 - char_now)) & 1) << (every - 1 - now_bit);
                 char_now++;
                 now_bit++;
                 if (now_bit == every)
@@ -169,10 +169,29 @@ void small::compress_output()
     std::cout << "开始压缩..." << std::endl;
     std::cout << "[                                        ] 0%";
 
-    int fre = map.size();
+    int out_for_map = 0;
+    int now_bit_for_map = 1;
+    long long int fre = map.size();
     for (int i = 1; i <= fre; i++)
     {
-        outfile << HT[i].key << '|' << HT[i].weight;
+        out_for_map = 0;
+        now_bit_for_map = 1;
+        //换一种方式输出key
+        for (int j = 0; j < select * 4; j++)
+        {
+            out_for_map += ((HT[i].key >> (select * 4 - j - 1)) & 1) << (8 - now_bit_for_map);
+            now_bit_for_map++;
+            if (now_bit_for_map == 9)
+            {
+                outfile.put(out_for_map);
+                out_for_map = 0;
+                now_bit_for_map = 1;
+            }
+        }
+        if (select % 2 == 1)
+            outfile.put(out_for_map);
+
+        outfile << '|' << HT[i].weight;
         if (i != fre)
             outfile.put('|');
     }
@@ -280,10 +299,29 @@ void small::compress_output_big()
     std::cout << "开始压缩..." << std::endl;
     std::cout << "[                                        ] 0%";
 
-    int fre = map.size();
+    int out_for_map = 0;
+    int now_bit_for_map = 1;
+    long long int fre = map.size();
     for (int i = 1; i <= fre; i++)
     {
-        outfile << HT[i].key << '|' << HT[i].weight;
+        out_for_map = 0;
+        now_bit_for_map = 1;
+        //换一种方式输出key
+        for (int j = 0; j < select * 4; j++)
+        {
+            out_for_map += ((HT[i].key >> (select * 4 - j - 1)) & 1) << (8 - now_bit_for_map);
+            now_bit_for_map++;
+            if (now_bit_for_map == 9)
+            {
+                outfile.put(out_for_map);
+                out_for_map = 0;
+                now_bit_for_map = 1;
+            }
+        }
+        if (select % 2 == 1)
+            outfile.put(out_for_map);
+
+        outfile << '|' << HT[i].weight;
         if (i != fre)
             outfile.put('|');
     }
@@ -304,7 +342,7 @@ void small::compress_output_big()
     //主要输出部分
     char c;
     int every = 8 * select * 0.5; //单位 bit
-    int tt_key = 0;               //用来记录 key
+    long long int tt_key = 0;     //用来记录 key
     int now_bit = 0;              //用来记录当前读入了多少个bit
     int char_now = 0;             //用来记录当前读取的字符使用到的 bit
     while (infile.get(c))
@@ -315,7 +353,7 @@ void small::compress_output_big()
         {
             while (char_now < 8)
             {
-                tt_key += (((int)c >> (7 - char_now)) & 1) << (every - 1 - now_bit);
+                tt_key += (long long int)(((int)c >> (7 - char_now)) & 1) << (every - 1 - now_bit);
                 char_now++;
                 now_bit++;
                 if (now_bit == every)

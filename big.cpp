@@ -35,7 +35,7 @@ bool big::decompress_input_output()
 
     char tmp;
     int num;
-    int fff;
+    long long int fff;
     int char_size;
 
     //假设这里我是成功开了一个多线程
@@ -50,9 +50,20 @@ bool big::decompress_input_output()
 
     while (1)
     {
-        infile >> fff >> tmp >> num;
+        fff = 0;
+        char c;
+        int now_get_bit = 0;
+        for (int i = 0; i < (select + 1) / 2; i++)
+        {
+            infile.get(c);
+            for (int j = 0; j < 8; j++)
+            {
+                fff += (long long int)(((int)c >> (7 - j)) & 1) << (every - 1 - now_get_bit);
+                now_get_bit++;
+            }
+        }
+        infile >> tmp >> num;
         map[fff] = num;
-
         infile.get(tmp);
 
         if (tmp != '|')

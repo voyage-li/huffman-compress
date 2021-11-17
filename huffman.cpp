@@ -1,6 +1,6 @@
 #include "huffman.h"
 
-void init(HuffmanTree &HT, std::map<int, int> &map, char **&HC, int tree_n)
+void init(HuffmanTree &HT, std::map<long long int, int> &map, char **&HC, int tree_n)
 {
     std::cout << "正在构造Huffman树：" << std::endl;
     //初始化 huffman树
@@ -92,7 +92,7 @@ void init(HuffmanTree &HT, std::map<int, int> &map, char **&HC, int tree_n)
     }
 }
 
-void init_big(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, char *> &HC, int tree_n)
+void init_big(HuffmanTree &HT, std::map<long long int, int> &map, std::unordered_map<long long int, char *> &HC, int tree_n)
 {
     std::cout << "正在构造Huffman树：" << std::endl;
     //初始化 huffman树
@@ -184,7 +184,7 @@ void init_big(HuffmanTree &HT, std::map<int, int> &map, std::unordered_map<int, 
     }
 }
 
-void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
+void init_for_de(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 {
     std::cout << "正在构造Huffman树：" << std::endl;
     //初始化 huffman树
@@ -254,11 +254,11 @@ void init_for_de(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
     }
 }
 
-void output_huffmantree(HuffmanTree &HT, std::map<int, int> &map, int tree_n)
+void output_huffmantree(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 {
     std::cout << "Huffman树：" << std::endl;
     printf("       |  key   | weight | parent |  ch\n");
-    int fre = map.size();
+    long long int fre = map.size();
     for (long long int i = 1; i < 2 * fre; i++)
     {
         printf("%6lld | %6lld | %6d | %6lld ", i, HT[i].key, HT[i].weight, HT[i].parent);
