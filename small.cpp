@@ -88,6 +88,7 @@ bool small::compress_input()
     int tt_key = 0;               //用来记录 key
     int now_bit = 0;              //用来记录当前读入了多少个bit
     int char_now = 0;             //用来记录当前读取的字符使用到的 bit
+    std::unordered_map<int, int> temp_map;
     while (infile.get(c))
     {
         char_size++;
@@ -104,10 +105,13 @@ bool small::compress_input()
             }
             if (now_bit == every)
             {
-                if (map.count(tt_key) == 0)
+                if (temp_map.count(tt_key) == 0)
+                {
                     map[tt_key] = 1;
+                    temp_map[tt_key] = 1;
+                }
                 else
-                    map[tt_key]++;
+                    temp_map[tt_key]++;
                 now_bit = 0;
                 tt_key = 0;
             }
@@ -115,7 +119,7 @@ bool small::compress_input()
     }
     if (now_bit != 0)
     {
-        if (map.count(tt_key) == 0)
+        if (temp_map.count(tt_key) == 0)
             map[tt_key] = 1;
         else
             map[tt_key]++;
