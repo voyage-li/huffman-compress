@@ -47,7 +47,7 @@ void small::compress()
     {
         if (!compress_input())
             return;
-        if (select < 6)
+        if (select < 7)
             compress_output();
         else
             compress_output_big();
@@ -137,7 +137,7 @@ bool small::compress_input()
 
     infile.close();
 
-    if (every < 24)
+    if (every < 28)
     {
         HC = new char *[(long long)pow(2, every)];
         init(HT, map, HC, tree_n); //生成 Huffman 树以及 Huffman 编码
