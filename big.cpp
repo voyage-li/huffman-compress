@@ -156,5 +156,8 @@ bool big::decompress_input_output()
     tmp_struct = {now_byte, size};
     infile.close();
     outfile.close();
+
+    pthread_join(threads, NULL);
+
     return true;
 }
