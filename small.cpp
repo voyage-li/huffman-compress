@@ -121,7 +121,7 @@ bool small::compress_input()
                     temp_map[tt_key] = 1;
                 }
                 else
-                    temp_map[tt_key]++;
+                    map[tt_key]++;
                 now_bit = 0;
                 tt_key = 0;
             }
