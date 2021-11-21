@@ -8,7 +8,7 @@ small::small()
 }
 small::~small()
 {
-    if (select < 6)
+    if (select < 7)
     {
         delete[] HC;
     }
@@ -91,7 +91,7 @@ bool small::compress_input()
 
     system("clear");
     std::cout << "               压缩进度                  " << std::endl;
-    std::cout << "正在获取文件大小..." << std::endl;
+    std::cout << "正在扫描文件..." << std::endl;
 
     char c;
     int every = 8 * select * 0.5; //单位 bit

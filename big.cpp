@@ -31,7 +31,7 @@ bool big::decompress_input_output()
 
     system("clear");
     std::cout << "               解压进度                  " << std::endl;
-    std::cout << "正在获取文件大小..." << std::endl;
+    std::cout << "正在扫描文件......" << std::endl;
 
     char tmp;
     int num;
