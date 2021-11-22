@@ -256,17 +256,22 @@ void init_for_de(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 
 void output_huffmantree(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 {
-    std::cout << "Huffman树：" << std::endl;
-    printf("       |  key   | weight | parent |  ch\n");
-    long long int fre = map.size();
-    for (long long int i = 1; i < 2 * fre; i++)
+    if (map.size() == 1)
+        std::cout << "只有一个元素！" << std::endl;
+    else
     {
-        printf("%6lld | %6lld | %6d | %6lld ", i, HT[i].key, HT[i].weight, HT[i].parent);
-        for (int j = 0; j < tree_n; j++)
-            printf("| %6lld ", HT[i].child[j]);
-        putchar('\n');
-        if (HT[i].parent == 0)
-            break;
+        std::cout << "Huffman树：" << std::endl;
+        printf("       |  key   | weight | parent |  ch\n");
+        long long int fre = map.size();
+        for (long long int i = 1; i < 2 * fre; i++)
+        {
+            printf("%6lld | %6lld | %6d | %6lld ", i, HT[i].key, HT[i].weight, HT[i].parent);
+            for (int j = 0; j < tree_n; j++)
+                printf("| %6lld ", HT[i].child[j]);
+            putchar('\n');
+            if (HT[i].parent == 0)
+                break;
+        }
     }
     getchar();
 }

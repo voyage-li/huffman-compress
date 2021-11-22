@@ -70,8 +70,6 @@ bool big::decompress_input_output()
             break;
     }
 
-    init_for_de(HT, map, tree_n);
-
     int temp_len = data_path.length();
     int point_loc = 0;
     for (point_loc = temp_len - 1; point_loc > 0; point_loc--)
@@ -80,6 +78,36 @@ bool big::decompress_input_output()
     ans_path = data_path.substr(0, point_loc) + "_." + type;
 
     std::ofstream outfile(ans_path.c_str(), std::ios::out | std::ios::binary);
+    if (map.size() == 1)
+    {
+        std::cout << "开始解压..." << std::endl;
+        char ans[select * 4];
+        memset(ans, 0, sizeof(ans));
+        for (int i = 0; i < select * 4; i++)
+            ans[i] = ((fff & (1 << (select * 4 - 1 - i))) >> (select * 4 - 1 - i)) + '0';
+        int out_put = 0;
+        int num_now = 0;
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j < select * 4; j++)
+            {
+                out_put += (ans[j] - '0') << (7 - num_now);
+                num_now++;
+                if (num_now == 8)
+                {
+                    outfile.put(out_put);
+                    out_put = 0;
+                    num_now = 0;
+                }
+            }
+        }
+        std::cout << "[########################################] 100%";
+        infile.close();
+        outfile.close();
+        return true;
+    }
+
+    init_for_de(HT, map, tree_n);
 
     std::cout << "开始解压..." << std::endl;
     std::cout << "[                                        ] 0%";

@@ -166,9 +166,6 @@ void small::compress_output()
     outfile.put(select + '0');
     outfile.put('|');
 
-    std::cout << "开始压缩..." << std::endl;
-    std::cout << "[                                        ] 0%";
-
     int out_for_map = 0;
     int now_bit_for_map = 1;
     long long int fre = map.size();
@@ -197,6 +194,17 @@ void small::compress_output()
     }
 
     outfile.put('-');
+    if (map.size() == 1)
+    {
+        std::cout << "开始压缩..." << std::endl;
+        std::cout << "[########################################] 100%";
+        infile.close();
+        outfile.close();
+        return;
+    }
+
+    std::cout << "开始压缩..." << std::endl;
+    std::cout << "[                                        ] 0%";
 
     int num = 0;
     int i = 0;
