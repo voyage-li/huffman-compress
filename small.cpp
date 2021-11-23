@@ -5,10 +5,11 @@ small::small()
 {
     now_byte = 0;
     char_size = 0;
+    HC = nullptr;
 }
 small::~small()
 {
-    if (select < 7)
+    if (select < 7 && HC)
     {
         delete[] HC;
     }
