@@ -53,11 +53,13 @@ void small::compress()
         else
             compress_output_big();
     }
-
+    end_time = clock();
+    double total_time = double(end_time - begin_time) / CLOCKS_PER_SEC;
     putchar('\n');
     std::cout << "已完成文件压缩！" << std::endl;
     std::cout << "压缩文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
+    std::cout << "压缩用时: " << total_time << "s" << std::endl;
     std::cout << "是否展示huffman树：(Enter跳过，其他字符展示)：\n";
     char c = getchar();
     if (c != '\n')
@@ -72,6 +74,8 @@ bool small::compress_input()
     std::cout << "请输入需要压缩的文件的路径(压缩后的文件会存在同路径,后缀为.dat):" << std::endl;
     getchar();
     getline(std::cin, data_path);
+
+    begin_time = clock();
 
     //截取存储路径 截取文件格式
     int temp_len = data_path.length();

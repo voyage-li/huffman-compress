@@ -12,6 +12,9 @@ void big::decompress()
     std::cout << "\n已完成文件解压！" << std::endl;
     std::cout << "解压文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
+    end_time = clock();
+    double total_time = double(end_time - begin_time) / CLOCKS_PER_SEC;
+    std::cout << "解压用时: " << total_time << "s" << std::endl;
     getchar();
 }
 bool big::decompress_input_output()
@@ -19,6 +22,8 @@ bool big::decompress_input_output()
     std::cout << "请输入需要解压的文件的路径(解压文件会存在相同的目录):" << std::endl;
     getchar();
     getline(std::cin, data_path);
+
+    begin_time = clock();
 
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
 

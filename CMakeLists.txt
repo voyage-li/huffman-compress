@@ -15,7 +15,10 @@ set(SOURCES
 
 add_executable(yasuo ${SOURCES})
 
-add_definitions(-Wall -g)
+add_definitions(-w)
+
+SET(CMAKE_BUILD_TYPE "Release")
+# SET(CMAKE_BUILD_TYPE "Debug")
 
 target_include_directories(yasuo
 PRIVATE

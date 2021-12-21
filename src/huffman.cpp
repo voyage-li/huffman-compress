@@ -257,10 +257,10 @@ void init_for_de(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 void output_huffmantree(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 {
     if (map.size() == 1)
-        std::cout << "只有一个元素！" << std::endl;
+        std::cout << "只有一个元素!" << std::endl;
     else
     {
-        std::cout << "Huffman树：" << std::endl;
+        std::cout << "Huffman树:" << std::endl;
         printf("       |  key   | weight | parent |  ch\n");
         long long int fre = map.size();
         for (long long int i = 1; i < 2 * fre; i++)
