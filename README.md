@@ -586,8 +586,6 @@
     
     add_executable(yasuo ${SOURCES})
     
-    add_definitions(-w)
-    
     SET(CMAKE_BUILD_TYPE "Release")
     
     target_include_directories(yasuo
@@ -599,10 +597,11 @@
 
     ```bash
     mkdir Release
-    cd Realease
+    cd Release
     cmake ..
     make
     ./yasuo
+    # 运行程序
     ```
 
 
