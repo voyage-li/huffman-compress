@@ -617,12 +617,25 @@
 
     使用该程序压缩大小1.3G的txt文档
 
-    > to be done 解压压缩不插电都三分钟以内
+    - 压缩用时：130.917s
+    
+        ![](./image/test_co.png)
+    
+    - 解压用时：113.172s
+    
+        ![](./image/test_de.png)
+    
+    - 压缩效率：$46\%$
+    
+        ![](./image/test_.png)
 
 #### 九、关于Huffman压缩的探索
 
-> to be done
+​	以上述1.3G的txt文档为例
+
+
 
 #### 十、实验收获
 
 > to be done
+
