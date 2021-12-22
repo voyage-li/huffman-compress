@@ -29,6 +29,7 @@ void init(HuffmanTree &HT, std::map<long long int, int> &map, char **&HC, int tr
     for (int i = 1; i <= fre; i++)
         ans.push(HT[i]);
 
+    int kong = 0;
     if (tree_n != 2)
     {
         int blank;
@@ -49,12 +50,13 @@ void init(HuffmanTree &HT, std::map<long long int, int> &map, char **&HC, int tr
                 Tree_blank->num = fre + i + 1;
                 ans.push(*Tree_blank);
             }
+            kong = blank;
         }
     }
 
     //要从加了0之后开始计算 即修正fre
 
-    for (long long int now = fre + 1; now < 2 * fre; now++)
+    for (long long int now = fre + 1 + kong; now < 2 * fre; now++)
     {
         int now_weight = 0;
         for (int i = 0; i < tree_n; i++)
@@ -72,7 +74,7 @@ void init(HuffmanTree &HT, std::map<long long int, int> &map, char **&HC, int tr
     }
 
     //构造 huffman编码
-    char *cd = new char[fre];
+    char *cd = new char[fre * tree_n];
     cd[fre - 1] = '\0';
     for (long long int i = 1; i <= fre; i++)
     {
@@ -121,6 +123,8 @@ void init_big(HuffmanTree &HT, std::map<long long int, int> &map, std::unordered
     for (int i = 1; i <= fre; i++)
         ans.push(HT[i]);
 
+    int kong = 0;
+
     if (tree_n != 2)
     {
         int blank;
@@ -141,12 +145,13 @@ void init_big(HuffmanTree &HT, std::map<long long int, int> &map, std::unordered
                 Tree_blank->num = fre + i + 1;
                 ans.push(*Tree_blank);
             }
+            kong = blank;
         }
     }
 
     //要从加了0之后开始计算 即修正fre
 
-    for (long long int now = fre + 1; now < 2 * fre; now++)
+    for (long long int now = fre + 1 + kong; now < 2 * fre; now++)
     {
         int now_weight = 0;
         for (int i = 0; i < tree_n; i++)
@@ -212,7 +217,7 @@ void init_for_de(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
     std::priority_queue<HTNode> ans;
     for (int i = 1; i <= fre; i++)
         ans.push(HT[i]);
-
+    int kong = 0;
     if (tree_n != 2)
     {
         int blank;
@@ -233,10 +238,11 @@ void init_for_de(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
                 Tree_blank->num = fre + i + 1;
                 ans.push(*Tree_blank);
             }
+            kong = blank;
         }
     }
 
-    for (long long int now = fre + 1; now < 2 * fre; now++)
+    for (long long int now = fre + 1 + kong; now < 2 * fre; now++)
     {
         int now_weight = 0;
         for (int i = 0; i < tree_n; i++)
@@ -257,10 +263,10 @@ void init_for_de(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 void output_huffmantree(HuffmanTree &HT, std::map<long long int, int> &map, int tree_n)
 {
     if (map.size() == 1)
-        std::cout << "只有一个元素!" << std::endl;
+        std::cout << "只有一个元素！" << std::endl;
     else
     {
-        std::cout << "Huffman树:" << std::endl;
+        std::cout << "Huffman树：" << std::endl;
         printf("       |  key   | weight | parent |  ch\n");
         long long int fre = map.size();
         for (long long int i = 1; i < 2 * fre; i++)

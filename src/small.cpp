@@ -53,13 +53,11 @@ void small::compress()
         else
             compress_output_big();
     }
-    end_time = clock();
-    double total_time = double(end_time - begin_time) / CLOCKS_PER_SEC;
+
     putchar('\n');
     std::cout << "已完成文件压缩！" << std::endl;
     std::cout << "压缩文件路径：" << std::endl;
     std::cout << ans_path << std::endl;
-    std::cout << "压缩用时: " << total_time << "s" << std::endl;
     std::cout << "是否展示huffman树：(Enter跳过，其他字符展示)：\n";
     char c = getchar();
     if (c != '\n')
@@ -75,15 +73,22 @@ bool small::compress_input()
     getchar();
     getline(std::cin, data_path);
 
-    begin_time = clock();
-
     //截取存储路径 截取文件格式
     int temp_len = data_path.length();
     int point_loc = 0;
     for (point_loc = temp_len - 1; point_loc > 0; point_loc--)
         if (data_path[point_loc] == '.')
             break;
-    ans_path = data_path.substr(0, point_loc) + ".dat";
+    ans_path = data_path.substr(0, point_loc);
+    if (tree_n < 10)
+        ans_path.push_back(tree_n + '0');
+    else
+    {
+        ans_path.push_back('1');
+        ans_path.push_back(tree_n - 10 + '0');
+    }
+    ans_path.push_back(select + '0');
+    ans_path += ".dat";
     type = data_path.substr(point_loc + 1, temp_len + 1 - point_loc);
 
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
@@ -95,6 +100,7 @@ bool small::compress_input()
     }
 
     system("clear");
+    std::cout << "基本单元: " << select / 2.0 << "Byte  huffman树: " << tree_n << std::endl;
     std::cout << "               压缩进度                  " << std::endl;
     std::cout << "正在扫描文件..." << std::endl;
 
