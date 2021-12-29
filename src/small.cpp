@@ -79,16 +79,7 @@ bool small::compress_input()
     for (point_loc = temp_len - 1; point_loc > 0; point_loc--)
         if (data_path[point_loc] == '.')
             break;
-    ans_path = data_path.substr(0, point_loc);
-    if (tree_n < 10)
-        ans_path.push_back(tree_n + '0');
-    else
-    {
-        ans_path.push_back('1');
-        ans_path.push_back(tree_n - 10 + '0');
-    }
-    ans_path.push_back(select + '0');
-    ans_path += ".dat";
+    ans_path = data_path.substr(0, point_loc) + ".dat";
     type = data_path.substr(point_loc + 1, temp_len + 1 - point_loc);
 
     std::ifstream infile(data_path.c_str(), std::ios::in | std::ios::binary);
