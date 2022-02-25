@@ -243,7 +243,7 @@
          bool compress_input();
          void compress_output();
          void compress_output_big();
-     
+
      private:
          int select;                                    //压缩单位选择
          int tree_n;                                    //n元Huffman树
@@ -379,279 +379,269 @@
            outfile.put((char)tt);
        tmp_struct = {now_byte, size};
        ```
-       
+
      - **void small::compress_output_big()**
-     
-         所选基本单元较大时使用函数，具体实现基本相同
-   
+
+       所选基本单元较大时使用函数，具体实现基本相同
+
 4. **big.h**和**big.cpp**
 
-    实现解压过程
+   实现解压过程
 
-    - 类的定义
+   - 类的定义
 
-        ```c++
-        class big
-        {
-        public:
-            big();
-            void decompress();
-            bool decompress_input_output();
-        
-        private:
-            int select;                       //压缩单位选择
-            int tree_n;                       //n元Huffman树
-            float size;                       //文件大小
-            int now_byte;                     //已经读取的字符数
-            std::string data_path;            //需要解压的文件的路径
-            std::string ans_path;             //解压完成的文件路径
-            std::string type;                 //用来存储被压缩的文件的格式
-            std::map<long long int, int> map; //需要解压的文件中不同字符的数量
-            HuffmanTree HT;                   //huffman树
-        };
-        ```
+     ```c++
+     class big
+     {
+     public:
+         big();
+         void decompress();
+         bool decompress_input_output();
 
-        - **void decompress()**
+     private:
+         int select;                       //压缩单位选择
+         int tree_n;                       //n元Huffman树
+         float size;                       //文件大小
+         int now_byte;                     //已经读取的字符数
+         std::string data_path;            //需要解压的文件的路径
+         std::string ans_path;             //解压完成的文件路径
+         std::string type;                 //用来存储被压缩的文件的格式
+         std::map<long long int, int> map; //需要解压的文件中不同字符的数量
+         HuffmanTree HT;                   //huffman树
+     };
+     ```
 
-            与用户进行交互
+     - **void decompress()**
 
-        - **bool decompress_input_output()**
+       与用户进行交互
 
-            解压时，输入与输出在一个函数实现 (特判只有一个基本单元的情况) 解压关键部分如下所示
+     - **bool decompress_input_output()**
 
-            ```c++
-            char ans[8];
-            char c;
-            int index = 0;
-            int fre = map.size();
-            int root_loc;
-            int now;
-            int now_bit = 0; //记录当前输出字符到的bit
-            int out_tmp = 0; //用来记录输出的字符
-            int wei = judge(tree_n);
-            int wei_now = 0;
-            int switch_child = 0;
-            for (root_loc = 1; root_loc < 2 * fre; root_loc++)
-            {
-                if (HT[root_loc].parent == 0)
-                    break;
-            }
-            now = root_loc;
-            while (1)
-            {
-                infile.get(c);
-                int tt = c;
-                index = 0;
-                for (int i = 7; i >= 0; i--)
-                    ans[index++] = ((tt >> i) & 1) + '0';
-                index = 0;
-                while (1)
-                {
-                    switch_child += (ans[index] - '0') << (wei - 1 - wei_now);
-                    wei_now++;
-                    if (wei == wei_now)
-                    {
-                        wei_now = 0;
-                        now = HT[now].child[switch_child];
-                        switch_child = 0;
-                    }
-                    index
-                    if (HT[now].child[0] == 0)
-                    {
-                        //获取对应权值对应的 bit位
-                        int int_to_char = HT[now].key;
-                        char ans_[every + 1];
-                        ans_[every] = '\0';
-                        for (int j = 0; j < every; j++)
-                            ans_[j] = ((int_to_char >> (every - 1 - j)) & 1) + '
-                        int j = 0;
-                        while (ans_[j] != '\0')
-                        {
-                            now_bit++;
-                            out_tmp += (ans_[j] - '0') << (8 - now_bit);
-                            if (now_bit == 8)
-                            {
-                                char_size--;
-                                outfile.put(out_tmp);
-                                now_byte++;
-                                tmp_struct = {now_byte, size};
-                                out_tmp = 0;
-                                now_bit = 0;
-                            }
-                            j++;
-                            if (char_size == 0)
-                                break;
-                        }
-                        now = root_loc;
-                    }
-                    if (index == 8 || char_size == 0)
-                        break;
-                }
-                if (char_size == 0)
-                    break;
-            }
-            ```
+       解压时，输入与输出在一个函数实现 (特判只有一个基本单元的情况) 解压关键部分如下所示
+
+       ```c++
+       char ans[8];
+       char c;
+       int index = 0;
+       int fre = map.size();
+       int root_loc;
+       int now;
+       int now_bit = 0; //记录当前输出字符到的bit
+       int out_tmp = 0; //用来记录输出的字符
+       int wei = judge(tree_n);
+       int wei_now = 0;
+       int switch_child = 0;
+       for (root_loc = 1; root_loc < 2 * fre; root_loc++)
+       {
+           if (HT[root_loc].parent == 0)
+               break;
+       }
+       now = root_loc;
+       while (1)
+       {
+           infile.get(c);
+           int tt = c;
+           index = 0;
+           for (int i = 7; i >= 0; i--)
+               ans[index++] = ((tt >> i) & 1) + '0';
+           index = 0;
+           while (1)
+           {
+               switch_child += (ans[index] - '0') << (wei - 1 - wei_now);
+               wei_now++;
+               if (wei == wei_now)
+               {
+                   wei_now = 0;
+                   now = HT[now].child[switch_child];
+                   switch_child = 0;
+               }
+               index
+               if (HT[now].child[0] == 0)
+               {
+                   //获取对应权值对应的 bit位
+                   int int_to_char = HT[now].key;
+                   char ans_[every + 1];
+                   ans_[every] = '\0';
+                   for (int j = 0; j < every; j++)
+                       ans_[j] = ((int_to_char >> (every - 1 - j)) & 1) + '
+                   int j = 0;
+                   while (ans_[j] != '\0')
+                   {
+                       now_bit++;
+                       out_tmp += (ans_[j] - '0') << (8 - now_bit);
+                       if (now_bit == 8)
+                       {
+                           char_size--;
+                           outfile.put(out_tmp);
+                           now_byte++;
+                           tmp_struct = {now_byte, size};
+                           out_tmp = 0;
+                           now_bit = 0;
+                       }
+                       j++;
+                       if (char_size == 0)
+                           break;
+                   }
+                   now = root_loc;
+               }
+               if (index == 8 || char_size == 0)
+                   break;
+           }
+           if (char_size == 0)
+               break;
+       }
+       ```
 
 5. **tempwindow.h**和**tempwindow.cpp**
 
-    多线程，命令行绘制进度界面
+   多线程，命令行绘制进度界面
 
-    - 用于传值的结构体
+   - 用于传值的结构体
 
-        ```c++
-        struct poss_help
-        {
-            int now_b;
-            float total;
-        };
-        ```
+     ```c++
+     struct poss_help
+     {
+         int now_b;
+         float total;
+     };
+     ```
 
-    - 具体绘制函数
+   - 具体绘制函数
 
-        ```c++
-        void *possesion(void *threadarg)
-        {
-            while (1)
-            {
-                struct poss_help *p = (struct poss_help *)threadarg;
-                int now_byte = p->now_b;
-                float size = p->total;
-                int temp = 40 * (now_byte / size);
-                int temp_n = 40 - temp;
-                putchar('\r');
-                putchar('[');
-                for (int i = 0; i < temp; i++)
-                    putchar('#');
-                for (int i = 0; i < temp_n; i++)
-                    putchar(' ');
-                std::cout << "] " << (int)(100 * (now_byte / size)) << "%  ";
-                if ((100 * (now_byte / size)) > 99)
-                {
-                    putchar('\r');
-                    putchar('[');
-                    for (int i = 0; i < 40; i++)
-                        putchar('#');
-                    std::cout << "] 100%";
-                    break;
-                }
-                //因为字节可能计算失误 可能会导致进度条最后跳一下
-            }
-            pthread_exit(NULL);
-        }
-        ```
+     ```c++
+     void *possesion(void *threadarg)
+     {
+         while (1)
+         {
+             struct poss_help *p = (struct poss_help *)threadarg;
+             int now_byte = p->now_b;
+             float size = p->total;
+             int temp = 40 * (now_byte / size);
+             int temp_n = 40 - temp;
+             putchar('\r');
+             putchar('[');
+             for (int i = 0; i < temp; i++)
+                 putchar('#');
+             for (int i = 0; i < temp_n; i++)
+                 putchar(' ');
+             std::cout << "] " << (int)(100 * (now_byte / size)) << "%  ";
+             if ((100 * (now_byte / size)) > 99)
+             {
+                 putchar('\r');
+                 putchar('[');
+                 for (int i = 0; i < 40; i++)
+                     putchar('#');
+                 std::cout << "] 100%";
+                 break;
+             }
+             //因为字节可能计算失误 可能会导致进度条最后跳一下
+         }
+         pthread_exit(NULL);
+     }
+     ```
 
-    - 多线程的调用
+   - 多线程的调用
 
-        - 建立
+     - 建立
 
-            ```c++
-            pthread_t threads;
-            poss_help tmp_struct;
-            tmp_struct = {now_byte, size};
-            pthread_create(&threads, NULL, possesion, (void *)&tmp_struct);
-            ```
+       ```c++
+       pthread_t threads;
+       poss_help tmp_struct;
+       tmp_struct = {now_byte, size};
+       pthread_create(&threads, NULL, possesion, (void *)&tmp_struct);
+       ```
 
-        - 结束
+     - 结束
 
-            ```c++
-            pthread_join(threads, NULL);
-            ```
+       ```c++
+       pthread_join(threads, NULL);
+       ```
 
 #### 七、编译过程
 
 - 编译环境
-    - Ubuntu-20.04 ( wsl2 )
-    - gcc 9.3.0
-    - cmake version 3.16.3
 
-- CMakeLists.txt (注意修改Debug模式和Release模式)
+  - Ubuntu-20.04 ( wsl2 )
+  - gcc 9.3.0
+  - cmake version 3.16.3
 
-    ```cmake
-    cmake_minimum_required(VERSION 3.5)
-    
-    project(yasuo)
-    
-    set (CMAKE_CXX_STANDARD 17)
-    
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread" )
-    
-    set(SOURCES
-        src/main.cpp
-        src/big.cpp
-        src/small.cpp
-        src/tempwindow.cpp
-        src/huffman.cpp)
-    
-    add_definitions(-w)# system忽略了返回值，消除编译警告
-    
-    add_executable(yasuo ${SOURCES})
-    
-    SET(CMAKE_BUILD_TYPE "Release")
-    
-    target_include_directories(yasuo
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include)
-    ```
-    
-- 编译操作(Release版本为例，首先进入项目目录)
+- CMakeLists.txt (注意修改 Debug 模式和 Release 模式)
 
-    ```bash
-    mkdir Release
-    cd Release
-    cmake ..
-    make
-    ./yasuo
-    # 运行程序
-    ```
+  ```cmake
+  cmake_minimum_required(VERSION 3.5)
 
+  project(yasuo)
+
+  set (CMAKE_CXX_STANDARD 17)
+
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread" )
+
+  set(SOURCES
+      src/main.cpp
+      src/big.cpp
+      src/small.cpp
+      src/tempwindow.cpp
+      src/huffman.cpp)
+
+  add_definitions(-w)# system忽略了返回值，消除编译警告
+
+  add_executable(yasuo ${SOURCES})
+
+  SET(CMAKE_BUILD_TYPE "Release")
+
+  target_include_directories(yasuo
+  PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/include)
+  ```
+
+- 编译操作(Release 版本为例，首先进入项目目录)
+
+  ```bash
+  mkdir Release
+  cd Release
+  cmake ..
+  make
+  ./yasuo
+  # 运行程序
+  ```
 
 #### 八、运行效果
 
-- 使用1.5Byte为基本单元，三叉Huffman树压缩png文件，源文件258kb，压缩后182kb，解压后258kb，效果较为明显，同时文件解压后无任何变化
+- 使用 1.5Byte 为基本单元，三叉 Huffman 树压缩 png 文件，源文件 258kb，压缩后 182kb，解压后 258kb，效果较为明显，同时文件解压后无任何变化
 
-    ![](./image/eg.png)
+  ![](./image/eg.png)
 
 - 性能测试
 
-    使用该程序压缩大小1.3G的txt文档
+  使用该程序压缩大小 1.3G 的 txt 文档
 
-    - 压缩用时：130.917s
-    
-    
-    - 解压用时：113.172s
-    
-    - 压缩效率：$46\%$
-    
-        ![](./image/test_.png)
+  - 压缩用时：130.917s
 
-#### 九、关于Huffman压缩的探索
+  - 解压用时：113.172s
 
-- 压缩一包含中英文及数字的txt文档，压缩效果如下(压缩率=$$\frac{压缩文件大小}{原始文件}$$)
-    ![](./image/table.png)
+  - 压缩效率：$46\%$
 
-- 利用上述数据作图  (mathematica作图有一定偏差)
+    ![](./image/test_.png)
 
-    ![](./image/pc.png)
+#### 九、关于 Huffman 压缩的探索
 
+- 压缩一包含中英文及数字的 txt 文档，压缩效果如下(压缩率=$$\frac{压缩文件大小}{原始文件}$$)
+  ![](./image/table.png)
 
+- 利用上述数据作图 (mathematica 作图有一定偏差)
 
-
+  ![](./image/pc.png)
 
 - 根据上述实验数据可以看出:
-    - 压缩基本单元为0.5Byte时，基本没有压缩效果
-    - 随着压缩基本单元的增大，压缩效果总体上呈现上升趋势
-    - 在压缩的基本单元从3.0Byte变为3.5Byte时，压缩效果均有小幅下降
-    - 当选用$2^n$叉Huffman树时，压缩效果明显更佳，而当选用$2^n+1$叉Huffman树时，压缩效果较差 ($2^n$叉Huffman树每一个节点都刚好可以利用 $n$ bit的Huffman编码)
-    
-    **因此，在压缩txt文本文件时，选用$2^n$叉Huffman树，在综合时间的情况下选择更大的压缩基本单元，能够提高压缩效率**
-    
-    > 同时值得指出的是，对于图片，视频等文件类型，基本单元极有可能发生出现次数相近的情况，此时综合时间等考虑，可以尽量选择1Byte为压缩的基本单元
+  - 压缩基本单元为 0.5Byte 时，基本没有压缩效果
+  - 随着压缩基本单元的增大，压缩效果总体上呈现上升趋势
+  - 在压缩的基本单元从 3.0Byte 变为 3.5Byte 时，压缩效果均有小幅下降
+  - 当选用$2^n$叉 Huffman 树时，压缩效果明显更佳，而当选用$2^n+1$叉 Huffman 树时，压缩效果较差 ($2^n$叉 Huffman 树每一个节点都刚好可以利用 $n$ bit 的 Huffman 编码)
+  **因此，在压缩 txt 文本文件时，选用$2^n$叉 Huffman 树，在综合时间的情况下选择更大的压缩基本单元，能够提高压缩效率**
+  > 同时值得指出的是，对于图片，视频等文件类型，基本单元极有可能发生出现次数相近的情况，此时综合时间等考虑，可以尽量选择 1Byte 为压缩的基本单元
 
 #### 十、实验收获
 
-- 更加熟悉了Huffman树，及相关算法
-- 对Huffman压缩时选用的基本单元及n叉Huffman树有了全新的认识
+- 更加熟悉了 Huffman 树，及相关算法
+- 对 Huffman 压缩时选用的基本单元及 n 叉 Huffman 树有了全新的认识
 - 提升了文件操作，位运算的能力
-
-
-
